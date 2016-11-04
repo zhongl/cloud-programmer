@@ -71,13 +71,13 @@ Vagrant.configure("2") do |config|
      
      sudo systemctl enable docker.service
      
-     sudo groupadd docker
-     sudo usermod -aG docker $(whoami)
-     
      sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service
      sudo sed -i "s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd --registry-mirror=http://hub-mirror.c.163.com -H unix:///var/run/docker.sock|g" /etc/systemd/system/docker.service
      sudo systemctl daemon-reload
      sudo systemctl restart docker.service
+
+     sudo groupadd docker
+     sudo usermod -aG docker $(whoami)
      
      sudo yum install -y java-1.8.0-openjdk.x86_64Install maven
 
