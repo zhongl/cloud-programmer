@@ -71,15 +71,12 @@ Vagrant.configure("2") do |config|
      
      sudo systemctl enable docker.service
      
-     sudo cp -n /lib/systemd/system/docker.service /etc/systemd/system/docker.service
-     sudo sed -i "s|ExecStart=/usr/bin/dockerd|ExecStart=/usr/bin/dockerd --registry-mirror=http://hub-mirror.c.163.com -H unix:///var/run/docker.sock|g" /etc/systemd/system/docker.service
+     curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://763e242f.m.daocloud.io
      sudo systemctl daemon-reload
      sudo systemctl restart docker.service
 
      sudo groupadd docker
      sudo usermod -aG docker $(whoami)
      
-     sudo yum install -y java-1.8.0-openjdk.x86_64Install maven
-
    SHELL
 end
