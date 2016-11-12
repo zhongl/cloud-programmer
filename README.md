@@ -9,4 +9,4 @@ vagrant plugin install vagrant-vbguest vagrant-docker-compose vagrant-proxyconf 
       
 ```
 
-> Use `--plugin-source https://rubygems.org --plugin-clean-sources` to skip looking up <https://gems,hashicorp.com>
+> Use `--plugin-source https://rubygems.org --plugin-clean-sources` to skip looking up <https://gems.hashicorp.com>
