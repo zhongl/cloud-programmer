@@ -14,10 +14,13 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "centos/7"
 
+  config.vm.provision :docker
+  config.vm.provision :docker_compose
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  config.vm.box_check_update = false
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -66,17 +69,5 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", inline: <<-SHELL
      sudo yum update
-
-     curl -fsSL https://get.docker.com/ | sh
-     
-     sudo systemctl enable docker.service
-     
-     curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://763e242f.m.daocloud.io
-     sudo systemctl daemon-reload
-     sudo systemctl restart docker.service
-
-     sudo groupadd docker
-     sudo usermod -aG docker $(whoami)
-     
    SHELL
 end
